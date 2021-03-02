@@ -1,5 +1,6 @@
 package DataAccessLayer;
 
+<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -50,4 +51,8 @@ public class C_Database
         }
         
     }
+=======
+public class C_Database {
+    
+>>>>>>> 50eb53b2b7a2c1ec38aa8a15ac544a943984d445
 }

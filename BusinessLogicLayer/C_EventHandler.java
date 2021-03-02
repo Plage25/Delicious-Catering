@@ -4,6 +4,7 @@ import DataAccessLayer.C_Database;
 
 public class C_EventHandler extends C_Database {
 
+<<<<<<< HEAD
     public class Client // Client login
     {
 
@@ -82,4 +83,8 @@ public class C_EventHandler extends C_Database {
     public void Notification() {
 
     }
+=======
+   
+    
+>>>>>>> 50eb53b2b7a2c1ec38aa8a15ac544a943984d445
 }
