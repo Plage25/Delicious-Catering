@@ -2,6 +2,7 @@ package DataAccessLayer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -43,8 +44,6 @@ public class C_Database {
             String selectSql = "SELECT * FROM dbo.Client WHERE Email = '" + email + "' AND Password = '" + password
                     + "'";
             resultSet = statement.executeQuery(selectSql);
-            // Print results from select statement
-
             DBDtest = "nothing";
             while (resultSet.next()) {
                 DBDtest = resultSet.getString(4) + " " + resultSet.getString(5);
@@ -61,6 +60,27 @@ public class C_Database {
         }
 
         return result;
+    }
+
+    public void Register(String FirstName, String Surname, String Email, String Password, String PhoneNumber) {
+
+        try (Connection connection = DriverManager.getConnection(dbURL, user, pass);
+                Statement statement = connection.createStatement();) {
+   
+            // the sql insert statement
+            PreparedStatement preparedStmt = connection.prepareStatement("INSERT INTO Client(FirstName,LastName,Email,Password,P_Number) VALUES (?,?,?,?,?)");   
+            preparedStmt.setString(1, FirstName);
+            preparedStmt.setString(2, Surname);
+            preparedStmt.setString(3, Email);
+            preparedStmt.setString(4, Password);
+            preparedStmt.setString(5, PhoneNumber);
+            // execute the preparedstatement
+            preparedStmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+
     }
 
 }

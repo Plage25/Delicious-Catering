@@ -14,7 +14,7 @@ public class UserInput extends C_EventHandler {
         C_Database connect = new C_Database();
         connect.Connect(); // Call method to connect database to the project
         int i = 1;
-        while (i == 1) { //While loop Welcome page
+        while (i == 1) { // While loop Welcome page
 
             DisplayWelcomePage();
             int Option = input.nextInt(); // Read user input
@@ -45,16 +45,25 @@ public class UserInput extends C_EventHandler {
                     break;
 
                 case 2:
-                    boolean RegCheck = C_EventHandler.Register();
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                    Boolean RegCheck = C_EventHandler.Register();
                     if (RegCheck = true) {
-                        i = 0; // Breaks loop and continue to next section
-                    } else {
-                        System.out.println("Login not found!Press ENTER to continue.");
+                        System.out.println("Register successful! Please wait 2 seconds.");
                         try {
-                            System.in.read();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+							Thread.sleep(2000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+                    } else {
+                        System.out.println("Register not successful!Please wait 2 seconds and try again");
+                        try {
+							Thread.sleep(2000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
                     }
                     break;
 
@@ -77,11 +86,37 @@ public class UserInput extends C_EventHandler {
                     }
                     break;
             }
-        }//end of while loop Welcome page
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-        System.out.println("Next Menu.Welcome! Answer Upcoming Questions:");
+        } // end of while loop Welcome page
+        
+        int j = 1;
+        while (j == 1) { // While loop Welcome page
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            ClientView();
+            int Choice = input.nextInt();
+            switch (Choice) {
+                case 1:
+                    boolean placeOrder = C_EventHandler.PlaceOrder();
+                    break;
+                case 2:
 
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                    System.exit(0);
+                    break;
+
+                default:
+                    break;
+            }
+        }
 
     }
 
@@ -95,6 +130,17 @@ public class UserInput extends C_EventHandler {
         System.out.println("2. Register");
         System.out.println("3. Forgot Password");
         System.out.println("4. Exit");
+    }
+
+    public static void ClientView() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        System.out.println("-----Choose option below------");
+        System.out.println("1. Place a Order");
+        System.out.println("2. Update a Order");
+        System.out.println("3. Delete a Order");
+        System.out.println("4. View Orders");
+        System.out.println("5. Exit");
     }
 
 }
