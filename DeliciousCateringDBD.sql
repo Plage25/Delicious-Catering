@@ -60,10 +60,11 @@ GO
 
 INSERT INTO Menu
 VALUES
-('Adult-Meal', 20),
-('Kid-Meal', 15),
-('Drink', 11),
-('Dessert', 15)
+('Adult-Meal', 110),
+('Kid-Meal', 75),
+('Alcohol-Drink', 30),
+('Non-Alcohol-Drink', 20),
+('Dessert',55)
 GO
 
 INSERT INTO EventDetails
