@@ -2,8 +2,6 @@ package PresentationLayer;
 
 import BusinessLogicLayer.C_EventHandler;
 import DataAccessLayer.C_Database;
-
-import java.util.Date;
 import java.util.Scanner;
 
 public class UserInput extends C_EventHandler {
@@ -39,6 +37,7 @@ public class UserInput extends C_EventHandler {
                         System.out.print("\033[H\033[2J");
                         System.out.flush();
                         System.out.println("Login not found!Press ENTER to continue.");
+                        
                         try {
                             System.in.read();
                         } catch (Exception e) {
@@ -99,10 +98,10 @@ public class UserInput extends C_EventHandler {
             int Choice = input.nextInt();
             switch (Choice) {
                 case 1:
-                    boolean placeOrder = C_EventHandler.PlaceOrder();
+                    C_EventHandler.PlaceOrder();
                     break;
                 case 2:
-
+                    C_EventHandler.UpdateOrder();
                     break;
                 case 3:
                     
@@ -129,7 +128,8 @@ public class UserInput extends C_EventHandler {
                     }
                     break;
                 case 4:
-
+                        C_EventHandler cdbd = new C_EventHandler();
+                        cdbd.ViewOrders();
                     break;
                 case 5:
                     System.out.print("\033[H\033[2J");
@@ -159,7 +159,7 @@ public class UserInput extends C_EventHandler {
     public static void ClientView() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        System.out.println("------Choose option below-------");
+        System.out.println("------Choose option below------");
         System.out.println("1. Place a Order");
         System.out.println("2. Update a Order");
         System.out.println("3. Delete a Order");

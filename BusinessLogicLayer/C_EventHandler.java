@@ -9,12 +9,12 @@ import java.util.regex.Pattern;
 import DataAccessLayer.C_Database;
 
 public class C_EventHandler extends C_Database {
-
+    static String userEmail;
     private static Scanner input = new Scanner(System.in);
 
     public static boolean login() {
         System.out.print("Enter Email: ");
-        String userEmail = input.nextLine(); // Read user input
+        userEmail = input.nextLine(); // Read user input
         System.out.print("Enter Password: ");
         String userPassword = input.nextLine(); // Read user input
 
@@ -103,7 +103,7 @@ public class C_EventHandler extends C_Database {
         return false;
     }
 
-    public static boolean PlaceOrder() {
+    public static void PlaceOrder() {
 
         String EventType = "";
         String EventDate = "2021/12/17"; // DATE
@@ -124,7 +124,7 @@ public class C_EventHandler extends C_Database {
         double decPrice = 0;
 
         int j = 1;
-        while (j == 1) { // While loop Welcome page
+        while (j == 1) { // While loop Foodmenu page
             System.out.print("\033[H\033[2J");
             System.out.flush();
             System.out.println("------------------------------");
@@ -246,6 +246,7 @@ public class C_EventHandler extends C_Database {
                             cdbd.InputOrder(fk, EventType, EventDate, Time, EventAdress, AmountOfAdults, AmountOfKids,
                                     AdultMeals, ChildMeals, AlcoholDrinks, NonAlcoholDrinks, Desserts, Payed,
                                     amntOutsanding, TotalPrice, decorations, decPrice);
+                            
                             j = 0;
                             confirm = 1;
                         } else if (Choice == 2) {
@@ -257,7 +258,7 @@ public class C_EventHandler extends C_Database {
                         } else {
                             System.out.print("\033[H\033[2J");
                             System.out.flush();
-                            System.out.println("Please choose a valid option !\n");
+                            System.out.println("Please choose a valid option!\n");
 
                         }
                     }
@@ -268,7 +269,6 @@ public class C_EventHandler extends C_Database {
                     break;
             }
         }
-        return false;
     }
 
     public static void ForgotPassword() {
@@ -287,6 +287,192 @@ public class C_EventHandler extends C_Database {
         C_Database CDBD = new C_Database();
         boolean deletecheck = CDBD.DeleteOrder(eventID);
         return deletecheck;
+    }
+
+    public static boolean UpdateOrder(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        System.out.println("Please provide eventID / orderID you wish to update:");
+        int eventID = input.nextInt();        
+
+        String EventType = "";
+        String EventDate = "2021/12/17"; // DATE
+        String Time = "";
+        String EventAdress = "";
+        int AmountOfAdults = 0;
+        int AmountOfKids = 0;
+        int fk = 1;
+        int AdultMeals = 0;
+        int ChildMeals = 0;
+        int AlcoholDrinks = 0;
+        int NonAlcoholDrinks = 0;
+        int Desserts = 0;
+        String Payed = "";
+        double amntOutsanding = 0;
+        String decorations = "";
+        double TotalPrice = 0;
+        double decPrice = 0;
+
+        int j = 1;
+        while (j == 1) { // While loop Welcome page
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            System.out.println("---------------------------------------------------------------------");
+            System.out.println("----------------------------Main Menu--------------------------------");
+            System.out.println("-----Choose option below and please enter all information again------");
+            System.out.println("1. Event Details");
+            System.out.println("2. Food Catering");
+            System.out.println("3. Decore");
+            System.out.println("4. Return / Confirm");
+
+            int Choice = input.nextInt();
+            input.nextLine(); // To avoid common scanner problem
+            switch (Choice) {
+                case 1:
+                    System.out.println("-----------------------------------");
+                    System.out.println("Please enter the events infomation below");
+                    System.out.println("-----------------------------------");
+                    System.out.println("Type of Party:");
+                    EventType = input.nextLine();
+                    int validDate = 0;
+                    while (validDate == 0) {
+                        System.out.println("Enter the date of the event: yyyy-mm-dd  eg;2021-12-2");
+                        EventDate = input.nextLine(); // Read user input
+
+                        SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+                        LocalDate quickdate = LocalDate.now();
+                        String changeToday = quickdate.toString();
+                        String Day = EventDate.substring(8, 10);
+                        String Month = EventDate.substring(5, 7);
+                        String Year = EventDate.substring(0, 4);
+                        String DateCheck = Day + " " + Month + " " + Year;
+
+                        String Day1 = changeToday.substring(8, 10);
+                        String Month1 = changeToday.substring(5, 7);
+                        String Year1 = changeToday.substring(0, 4);
+                        String DateCheck1 = Day1 + " " + Month1 + " " + Year1;
+
+                        String dateBeforeString = DateCheck1;
+                        String dateAfterString = DateCheck;
+                        float daysBetween = 0;
+                        try {
+                            Date dateBefore = myFormat.parse(dateBeforeString);
+                            Date dateAfter = myFormat.parse(dateAfterString);
+                            long difference = dateAfter.getTime() - dateBefore.getTime();
+                            daysBetween = (difference / (1000 * 60 * 60 * 24));
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if (daysBetween > 15) {
+                            C_Database cdbd = new C_Database();
+                            boolean checkdate = cdbd.checkValidDate(EventDate);
+                            if (checkdate == true) {
+                                validDate = 1;
+                            } else {
+                                System.out.println("Error! :This date is already booked.Please pick another date");
+                            }
+                        } else {
+                            System.out.println("Error!:Booking must be made more than 15 days from today");
+                        }
+
+                    } // end date check while loop
+                    System.out.println("Enter the time of the event: hh:mm  eg;19:25");
+                    Time = input.nextLine(); // Read user input
+                    System.out.println("Please enter the events Address: ");
+                    EventAdress = input.nextLine(); // Read user input
+                    System.out.println("Please enter the amount of adults that will be at the event: ");
+                    AmountOfAdults = input.nextInt(); // Read user input
+                    System.out.println("Please enter the amount of Kids that will be at the event: ");
+                    AmountOfKids = input.nextInt(); // Read user input
+                    try {
+                        System.out.println("Event details saved successfully, please wait...");
+                        Thread.sleep(2500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 2:
+                    System.out.println("Please Enter the food infomation below");
+                    System.out.println("Enter number of AdultMeals: ");
+                    AdultMeals = input.nextInt(); // Read user input
+                    System.out.println("Enter number of ChildMeals: ");
+                    ChildMeals = input.nextInt(); // Read user input
+                    System.out.println("Enter number of Alcohol drinks: ");
+                    AlcoholDrinks = input.nextInt(); // Read user input
+                    System.out.println("Enter number of NonAlcohol drinks: ");
+                    NonAlcoholDrinks = input.nextInt(); // Read user input
+                    System.out.println("Enter number of Desserts: ");
+                    Desserts = input.nextInt(); // Read user input
+                    try {
+                        System.out.println("Food information saved successfully, please wait...");
+                        Thread.sleep(2500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 3:
+
+                    System.out.println(
+                            "Delicious-Catering will provide costs at later time(Ts &Cs apply)\nPlease provide an information paragraph regarding your decor requirements below;");
+                    decorations = input.nextLine();
+                    try {
+                        System.out.println("Decorations saved successfully, please wait...");
+                        Thread.sleep(2500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 4:
+                    int confirm = 0;
+                    while (confirm == 0) {
+                        System.out.println("Choose option below");
+                        System.out.println("1. Confirm and place order");
+                        System.out.println("2. Wait! I want to edit my order.");
+                        System.out.println("3. Return to main menu without placing order");
+                        Choice = input.nextInt();
+                        if (Choice == 1) {
+                            C_Database cdbd = new C_Database();
+                            cdbd.UpdateOrder(eventID,fk, EventType, EventDate, Time, EventAdress, AmountOfAdults, AmountOfKids,
+                                    AdultMeals, ChildMeals, AlcoholDrinks, NonAlcoholDrinks, Desserts, Payed,
+                                    amntOutsanding, TotalPrice, decorations, decPrice);
+                            j = 0;
+                            confirm = 1;
+                        } else if (Choice == 2) {
+                            j = 1;
+                            confirm = 1;
+                        } else if (Choice == 3) {
+                            j = 0;
+                            confirm = 1;
+                        } else {
+                            System.out.print("\033[H\033[2J");
+                            System.out.flush();
+                            System.out.println("Please choose a valid option!\n");
+
+                        }
+                    }
+                    break;
+
+                default:
+
+                    break;
+            }
+        }
+        return false;
+    }
+
+    public void ViewOrders() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        C_Database CDBD = new C_Database();
+        CDBD.ViewOrders(userEmail);
+        System.out.println("Press ENTER to continue.");
+             input.nextLine();//Avoid scanner error skip
+             try {
+                 System.in.read();
+             } catch (Exception e) {
+                 e.printStackTrace();
+             }
     }
 
 }
