@@ -368,7 +368,7 @@ public class C_Database {
             preparedStmt.setDouble(14, TotalPrice);
             preparedStmt.setString(15, decorations);
             preparedStmt.setDouble(16, decPrice);
-            preparedStmt.setDouble(17, eventID);
+            preparedStmt.setInt(17, eventID);
             // execute the preparedstatement
             preparedStmt.executeUpdate();
             System.out.print("\033[H\033[2J");
