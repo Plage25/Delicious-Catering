@@ -172,7 +172,7 @@ public class C_Database {
                     e.printStackTrace();
                 }
             } else {
-                System.out.println("Wrong email address inserted.Wait 3 seconds to be redirected...");
+                System.out.println("Wrong email address inserted. Wait 3 seconds to be redirected...");
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {

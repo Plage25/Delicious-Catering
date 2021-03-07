@@ -159,7 +159,7 @@ public class UserInput extends C_EventHandler {
     public static void ClientView() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        System.out.println("-----Choose option below------");
+        System.out.println("------Choose option below-------");
         System.out.println("1. Place a Order");
         System.out.println("2. Update a Order");
         System.out.println("3. Delete a Order");
