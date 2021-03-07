@@ -72,7 +72,7 @@ INSERT INTO EventDetails
 values
 (2,'Wedding','2021/12/17', '13:30', '56 Platberg Avenue, Kempton Park, Gauteng', 10, 5, 8, 4, 10,10, 15,'Deposit', 253,506, 'N/a', 0),
 (1,'Barbeque','2021/12/18', '11:25', '84 Johnson Avenue, Boksburg, Gauteng', 11, 9, 11, 9, 10,10, 20 ,'Yes', 0, 600, 'Yes- 50 blue balloons on the front gate and 10 surprise wrappers per meal with a toy in', 50),
-(1,'Barbeque','2021/12/19', '11:30', '85 Johnson Avenue, Boksburg, Gauteng', 40, 9, 11, 9, 10,10, 20 ,'Yes', 0, 600, 'N/a', 50)
+(1,'Barbeque','2020/12/19', '11:30', '85 Johnson Avenue, Boksburg, Gauteng', 40, 9, 11, 9, 10,10, 20 ,'Yes', 0, 600, 'N/a', 50)
 GO
 
 SELECT * FROM Client

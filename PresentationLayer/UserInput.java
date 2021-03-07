@@ -146,9 +146,9 @@ public class UserInput extends C_EventHandler {
     public static void DisplayWelcomePage() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        System.out.println("-------------------------------");
+        System.out.println("------------------------------");
         System.out.println("Welcome to Delicious Catering!");
-        System.out.println("-----Choose option below-------");
+        System.out.println("-----Choose option below------");
         System.out.println("1. Login");
         System.out.println("2. Register");
         System.out.println("3. Forgot Password");
