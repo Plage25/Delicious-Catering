@@ -41,7 +41,8 @@ EventID int PRIMARY KEY IDENTITY(1,1),
 [TotalKids] int,  --Total Kids attending event
 [AdultMeals] int,  --amount needed for event
 [KidMeals] int ,  --amount needed for event
-[Drinks] int , --amount needed for event
+[AlcoholDrinks] int , --amount needed for event
+[NonAlcoholDrinks] int , --amount needed for event
 [Desserts] int , --amount needed for event
 [Payed] VARCHAR(10),  --Yes/No/Deposit
 [Amnt_Outstanding] MONEY,  --
@@ -60,16 +61,18 @@ GO
 
 INSERT INTO Menu
 VALUES
-('Adult-Meal', 20),
-('Kid-Meal', 15),
-('Drink', 11),
-('Dessert', 15)
+('Adult-Meal', 110),
+('Kid-Meal', 75),
+('Alcohol-Drink', 30),
+('Non-Alcohol-Drink', 20),
+('Dessert',55)
 GO
 
 INSERT INTO EventDetails
 values
-(2,'Wedding','2021/12/17', '13:30', '56 Platberg Avenue, Kempton Park, Gauteng', 10, 5, 8, 4, 15, 15,'Deposit', 253,506, 'N/a', 0),
-(1,'Barbeque','2021/12/18', '11:25', '84 Johnson Avenue, Boksburg, Gauteng', 11, 9, 11, 9, 20, 20 ,'Yes', 0, 600, 'Yes- 50 blue balloons on the front gate and 10 surprise wrappers per meal with a toy in', 50)
+(2,'Wedding','2021/12/17', '13:30', '56 Platberg Avenue, Kempton Park, Gauteng', 10, 5, 8, 4, 10,10, 15,'Deposit', 253,506, 'N/a', 0),
+(1,'Barbeque','2021/12/18', '11:25', '84 Johnson Avenue, Boksburg, Gauteng', 11, 9, 11, 9, 10,10, 20 ,'Yes', 0, 600, 'Yes- 50 blue balloons on the front gate and 10 surprise wrappers per meal with a toy in', 50),
+(1,'Barbeque','2021/12/19', '11:30', '85 Johnson Avenue, Boksburg, Gauteng', 40, 9, 11, 9, 10,10, 20 ,'Yes', 0, 600, 'N/a', 50)
 GO
 
 SELECT * FROM Client
