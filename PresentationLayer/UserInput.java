@@ -19,7 +19,7 @@ public class UserInput extends C_EventHandler {
 
             DisplayWelcomePage();
             int Option = input.nextInt(); // Read user input
-
+            
             switch (Option) {
                 case 1:
                     boolean LogCheck = C_EventHandler.login();
@@ -91,7 +91,7 @@ public class UserInput extends C_EventHandler {
         } // end of while loop Welcome page
 
         int j = 1;
-        while (j == 1) { // While loop Welcome page
+        while (j == 1) { // While loop Main Menu page
             System.out.print("\033[H\033[2J");
             System.out.flush();
             ClientView();
@@ -104,7 +104,6 @@ public class UserInput extends C_EventHandler {
                     C_EventHandler.UpdateOrder();
                     break;
                 case 3:
-                    
                     C_EventHandler ev = new C_EventHandler();
                     Boolean DeleteCheck = ev.DeleteOrder();
                     if (DeleteCheck == true) {
@@ -147,9 +146,9 @@ public class UserInput extends C_EventHandler {
     public static void DisplayWelcomePage() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        System.out.println("------------------------------");
+        System.out.println("-------------------------------");
         System.out.println("Welcome to Delicious Catering!");
-        System.out.println("-----Choose option below------");
+        System.out.println("-----Choose option below-------");
         System.out.println("1. Login");
         System.out.println("2. Register");
         System.out.println("3. Forgot Password");
@@ -159,7 +158,7 @@ public class UserInput extends C_EventHandler {
     public static void ClientView() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        System.out.println("------Choose option below------");
+        System.out.println("-----Choose option below------");
         System.out.println("1. Place a Order");
         System.out.println("2. Update a Order");
         System.out.println("3. Delete a Order");
